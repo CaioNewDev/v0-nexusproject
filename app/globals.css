@@ -1,0 +1,130 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-heading: var(--font-sans);
+  --font-sans: var(--font-geist-sans), 'Geist Fallback';
+  --font-mono: var(--font-geist-mono), 'Geist Mono Fallback';
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-neon-green: var(--neon-green);
+  --color-neon-blue: var(--neon-blue);
+  --color-neon-cyan: var(--neon-cyan);
+  --color-neon-magenta: var(--neon-magenta);
+  --color-neon-amber: var(--neon-amber);
+  --color-neon-red: var(--neon-red);
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+}
+
+:root {
+  --background: oklch(0.16 0.02 260);
+  --foreground: oklch(0.97 0.005 250);
+  --card: oklch(0.2 0.022 260);
+  --card-foreground: oklch(0.97 0.005 250);
+  --popover: oklch(0.2 0.022 260);
+  --popover-foreground: oklch(0.97 0.005 250);
+  --primary: oklch(0.78 0.18 195);
+  --primary-foreground: oklch(0.16 0.02 260);
+  --secondary: oklch(0.26 0.02 260);
+  --secondary-foreground: oklch(0.97 0.005 250);
+  --muted: oklch(0.26 0.02 260);
+  --muted-foreground: oklch(0.68 0.015 260);
+  --accent: oklch(0.3 0.03 260);
+  --accent-foreground: oklch(0.97 0.005 250);
+  --destructive: oklch(0.62 0.22 25);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 14%);
+  --ring: oklch(0.78 0.18 195);
+
+  --neon-green: oklch(0.85 0.22 135);
+  --neon-blue: oklch(0.7 0.18 245);
+  --neon-cyan: oklch(0.82 0.16 200);
+  --neon-magenta: oklch(0.7 0.24 330);
+  --neon-amber: oklch(0.82 0.16 80);
+  --neon-red: oklch(0.65 0.23 22);
+
+  --chart-1: oklch(0.82 0.16 200);
+  --chart-2: oklch(0.7 0.24 330);
+  --chart-3: oklch(0.85 0.22 135);
+  --chart-4: oklch(0.7 0.18 245);
+  --chart-5: oklch(0.82 0.16 80);
+
+  --radius: 0.75rem;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+}
+
+@layer utilities {
+  .text-glow-green {
+    text-shadow: 0 0 12px var(--neon-green);
+  }
+  .text-glow-blue {
+    text-shadow: 0 0 12px var(--neon-blue);
+  }
+  .text-glow-cyan {
+    text-shadow: 0 0 12px var(--neon-cyan);
+  }
+}
+
+@keyframes dash-fade {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-view {
+  animation: dash-fade 0.35s ease-out;
+}
+
+@keyframes route-dash {
+  to {
+    stroke-dashoffset: -100;
+  }
+}
