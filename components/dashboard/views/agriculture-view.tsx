@@ -31,8 +31,8 @@ import {
   Wind,
 } from 'lucide-react'
 import { Panel } from '@/components/dashboard/panel'
-import dynamic from 'next/dynamic';
-const RealMap = dynamic(() => import('@/components/RealMap'), { ssr: false });
+const RealMap = dynamic(() => import('@/components/RealMap').then((mod) => 
+  ({ default: mod.RealMap || mod.default })), { ssr: false });
 
 type Tone = 'blue' | 'green' | 'red' | 'amber'
 
