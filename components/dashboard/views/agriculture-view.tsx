@@ -588,7 +588,7 @@ export function AgricultureView() {
                 <p className="text-[11px] capitalize text-muted-foreground">
                   {formattedDate}
                 </p>
-                <p className="font-mono text-sm font-semibold tabular-nums text-foreground">
+                <p className="text-sm font-medium text-muted-foreground" suppressHydrationWarning>
                   {formattedTime}
                 </p>
               </div>
