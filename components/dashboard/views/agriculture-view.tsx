@@ -31,7 +31,10 @@ import {
   Wind,
 } from 'lucide-react'
 import { Panel } from '@/components/dashboard/panel'
-const RealMap = dynamic(() => import('@/components/RealMap').then((mod) => ({ default: mod.RealMap || mod.default })), { ssr: false });
+const RealMap = dynamic(
+  () => import('@/components/RealMap').then((mod) => mod.default || mod.RealMap),
+  { ssr: false }
+);
 type Tone = 'blue' | 'green' | 'red' | 'amber'
 
 const toneStyles: Record<
@@ -586,7 +589,7 @@ export function AgricultureView() {
                 <p className="text-[11px] capitalize text-muted-foreground">
                   {formattedDate}
                 </p>
-                <p className="text-sm font-medium text-muted-foreground" suppressHydrationWarning>
+                <p className="font-mono text-sm font-semibold tabular-nums text-foreground" suppressHydrationWarning>
                   {formattedTime}
                 </p>
               </div>
