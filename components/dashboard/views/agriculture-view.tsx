@@ -32,7 +32,9 @@ import {
 } from 'lucide-react'
 import { Panel } from '@/components/dashboard/panel'
 const RealMap = dynamic(
-  () => import('@/components/RealMap').then((mod) => mod.default || mod.RealMap),
+  () => import('@/components/RealMap').then((mod) => {
+    return { default: mod.default || mod.RealMap };
+  }),
   { ssr: false }
 );
 type Tone = 'blue' | 'green' | 'red' | 'amber'
