@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import dynamic from 'next/dynamic' // CORREÇÃO 1: Importação do dynamic adicionada
 import {
   Area,
   AreaChart,
@@ -31,7 +32,6 @@ import {
   Wind,
 } from 'lucide-react'
 import { Panel } from '@/components/dashboard/panel'
-import dynamic from 'next/dynamic'
 
 const RealMap = dynamic(
   () => import('@/components/RealMap').then((mod) => mod.RealMap),
@@ -328,12 +328,17 @@ function ChartTooltip({ active, payload, label }: any) {
 
 export function AgricultureView() {
   const [active, setActive] = useState<string>('ndvi')
-  const [now, setNow] = useState(() => new Date())
+  
+  // CORREÇÃO 2: Inicia como null para evitar erro de hidratação no servidor do Vercel
+  const [now, setNow] = useState<Date | null>(null)
+  
   const [weather, setWeather] = useState<OpenMeteoResponse | null>(null)
   const [weatherLoading, setWeatherLoading] = useState(true)
   const [weatherError, setWeatherError] = useState<string | null>(null)
 
   useEffect(() => {
+    // CORREÇÃO 2: Define a data apenas quando o componente é montado no cliente
+    setNow(new Date())
     const timer = window.setInterval(() => setNow(new Date()), 1000)
     return () => window.clearInterval(timer)
   }, [])
@@ -382,17 +387,19 @@ export function AgricultureView() {
   const CurrentWeatherIcon = weatherCodeToIcon(currentWeatherCode)
   const forecast = weather ? formatForecastDays(weather.daily) : []
 
-  const formattedDate = now.toLocaleDateString('pt-BR', {
+  // CORREÇÃO 2: Só formata a data se `now` não for null
+  const formattedDate = now ? now.toLocaleDateString('pt-BR', {
     weekday: 'long',
     day: 'numeric',
     month: 'long',
     year: 'numeric',
-  })
-  const formattedTime = now.toLocaleTimeString('pt-BR', {
+  }) : 'Carregando...'
+  
+  const formattedTime = now ? now.toLocaleTimeString('pt-BR', {
     hour: '2-digit',
     minute: '2-digit',
     second: '2-digit',
-  })
+  }) : '--:--:--'
 
   return (
     <div className="space-y-6">
