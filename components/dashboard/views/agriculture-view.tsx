@@ -31,7 +31,6 @@ import {
   Wind,
 } from 'lucide-react'
 import { Panel } from '@/components/dashboard/panel'
-<<<<<<< HEAD
 import dynamic from 'next/dynamic'
 
 const RealMap = dynamic(
@@ -39,14 +38,6 @@ const RealMap = dynamic(
   { ssr: false }
 );
 
-=======
-const RealMap = dynamic(
-  () => import('@/components/RealMap').then((mod) => {
-    return { default: mod.default || mod.RealMap };
-  }),
-  { ssr: false }
-);
->>>>>>> 6cddca5ad6be124aa489baf4ea9451ac9c22c480
 type Tone = 'blue' | 'green' | 'red' | 'amber'
 
 const toneStyles: Record<
